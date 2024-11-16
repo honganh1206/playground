@@ -52,3 +52,5 @@ func main() {
 
 ## [[Maps in Go]]
 
+## [[Functions in Go]]
+
