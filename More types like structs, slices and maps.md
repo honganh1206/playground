@@ -11,7 +11,6 @@ cssclasses:
 
 ## [[Structs]]
 
-
 ## Arrays in Go
 
 In Go, the type `[n]T` is an array of `n` values of type `T`

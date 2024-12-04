@@ -1,6 +1,6 @@
 # Set up Golang
 
-## WSL2
+## WSL2/Debian-based distros
 
 ```bash
 # Download golang version needed in .tar

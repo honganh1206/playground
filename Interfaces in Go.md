@@ -15,9 +15,9 @@ We implement an interface by *implementing its methods*. There is no explicit de
 type Abser interface {
 	Abs() float64
 }
-
+// A type that implements the Abser interface
 type MyFloat float64
-
+// A struct that implements the Abser interface
 type Vertex struct {
 	X, Y float64
 }
@@ -49,52 +49,20 @@ func (v *Vertex) Abs() float64 {
 
 ```
 
-## Interface values
+[[Interface values]]
 
-Interface values = A tuple of a value and a concrete type
+[[Empty interface]]
+
+[[Type assertion]]
+
+[[Type switches]]
+
+[[The Stringer Interface]]
+
+[[Errors as a built-in interface]]
+
+[[Readers]]
+
+[[Images]]
 
 
-```go
-var a Animal = Dog{"Buddy"} // The type here is `Dog` and the value is `Dog{"Buddy"}`
-
-```
-
-
-If the concrete value inside the interface is nil then *the method will be called with a nil receiver*
-
-
-```go
-type I interface {
-	M()
-}
-
-type T struct {
-	S string
-}
-
-func (t *T) M() {
-	if t == nil {
-		fmt.Println("<nil>")
-		return
-	}
-	fmt.Println(t.S)
-}
-
-func main() {
-	var i I
-
-	var t *T
-	i = t // Nil underlying value here
-	describe(i) // (<nil>, *main.T)
-	i.M() // <nil>
-
-	i = &T{"hello"} 
-	describe(i) // (&{hello}, *main.T)
-	i.M() // hello
-}
-
-func describe(i I) {
-	fmt.Printf("(%v, %T)\n", i, i)
-}
-
-```

@@ -13,7 +13,7 @@ cssclasses:
 
 [[More types like structs, slices and maps]]
 
-[[Methods and interfaces]]
+[[Methods and Interfaces]]
 
 [[Generics in Go]]
 
