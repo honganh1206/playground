@@ -1,16 +1,17 @@
 ---
-id: Gorountines
+id: Goroutines
 aliases: []
 tags: []
 ---
 
-Tags: #review
+# Goroutines
 
-A lightweight thread managed by the Go runtime. We can think of it as the async-await mechanism in C#: A little helper we can call to do something for us in the background while we are busy with other stuff.
+A lightweight thread managed by the Go runtime. We can think of it as the async-await mechanism in
+C#: A little helper we can call to do something for us in the background while we are busy with
+other stuff.
 
 ```go
 go f(x, y, z)
-
 // Start a new gorountine
 // We evaluate f, x, y , z during the CURRENT gorountine, while the execution of f happens in the NEW gorountine
 f(x, y, z)
@@ -34,8 +35,9 @@ func main() {
 	go say("world") // Start a helper (goroutine) to say "world"
 	say("hello")    // Main program says "hello" directly
 }
-
 ```
+
+Goroutines have their own call stack, which grows and shrinks as required
 
 As gorountines _run in the same address space_, the access to shared memory must be synchronized.
 
@@ -63,7 +65,8 @@ An example of a background goroutine check:
 
 ```
 
-Note that _background goroutine forms a closure over variables outside its scope_. Any changes we make to the variables will be reflected in the rest of the codebase
+Note that _background goroutine forms a closure over variables outside its scope_. Any changes we
+make to the variables will be reflected in the rest of the codebase
 
 ```go
 func main() {
@@ -79,3 +82,6 @@ func main() {
 	fmt.Println(exampleString) // Also prints "foobar"
 }
 ```
+
+> [!WARNING] Goroutines are NOT threads. There might only be one thread in a program, and that
+> thread has thousands of goroutines. Goroutines are **multiplexed dynamically** onto threads

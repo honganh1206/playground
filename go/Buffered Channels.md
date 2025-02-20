@@ -1,3 +1,9 @@
+---
+id: Buffered Channels
+aliases: []
+tags: []
+---
+
 Tags: #review #golang #programming
 
 Go can have buffered channels (channels holding a certain number of values).
@@ -17,3 +23,6 @@ func main() {
 | ------------------ | -------------------------------------- | -------------------------------------------- |
 | Sender -> Receiver | Sender blocks if the buffer is full    | Sender blocks until receiver ready to read   |
 | Receiver -> Sender | Receiver blocks if the buffer is empty | Receiver blocks until there is value to read |
+
+> [!IMPORTANT] Buffering removes [synchronization](./Synchronization.md). Buffering makes channels
+> more like Erlang's mailboxes?

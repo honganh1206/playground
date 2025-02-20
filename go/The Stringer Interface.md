@@ -1,5 +1,10 @@
-Tags: #review #programming #golang 
+---
+id: The Stringer Interface
+aliases: []
+tags: []
+---
 
+Tags: #review #programming #golang
 
 ```go
 type Stringer interface {
@@ -8,10 +13,9 @@ type Stringer interface {
 
 ```
 
-The `Stringer` interface is implemented by the `fmt` package as *a type that can describe itself as a string*
+The `Stringer` interface is implemented by the `fmt` package as _a type that can describe itself as a string_
 
-Implementing the `Stringer` interface allows values to be *automatically converted into strings* when using with `fmt.Print()` or `fmt.Printf()`. It is a common pattern in Go for *providing string representations for custom types*  
-
+Implementing the `Stringer` interface allows values to be _automatically converted into strings_ when using with `fmt.Print()` or `fmt.Printf()`. It is a common pattern in Go for _providing string representations for custom types_
 
 ```go
 type Person struct {
@@ -28,38 +32,4 @@ func main() {
 	z := Person{"Zaphod Beeblebrox", 9001}
 	fmt.Println(a, z) // Arthur Dent (42 years) Zaphod Beeblebrox (9001 years)
 }
-
-```
-
-Exercise
-
-
-```go
-import (
-	"fmt"
-	"strings"
-)
-
-type IPAddr [4]byte
-
-func (ip IPAddr) String() string {
-	parts := make([]string, len(ip))
-	for index, byteVal := range ip {
-		parts[index] = fmt.Sprintf("%d", byteVal)
-	}
-	
-	return strings.Join(parts, ".")
-}
-
-func main() {
-	hosts := map[string]IPAddr{
-		"loopback":  {127, 0, 0, 1},
-		"googleDNS": {8, 8, 8, 8},
-	}
-	for name, ip := range hosts {
-		fmt.Printf("%v: %v\n", name, ip)
-	}
-}
-
-
 ```

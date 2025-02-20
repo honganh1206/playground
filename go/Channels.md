@@ -16,8 +16,8 @@ ch <- v // Send v to channel ch
 v := <-ch // Receive value from ch and assign value to x
 ```
 
-> [!important] Important
-> Sends and receives are blocked until the other side is ready. This allows goroutines to sync without explicit locks or condition variables.
+> [!important] Important Sends and receives are blocked until the other side is ready. This allows
+> goroutines to sync without explicit locks or condition variables.
 
 ```go
 func sum(s []int, c chan int) {
@@ -53,7 +53,8 @@ chan<- time.Time // Send-only
 
 ## Range and Close
 
-A sender can use the keyword `close` to indicate that no more values will be sent, and receivers can test if the channel has been closed by using a second boolean parameter.
+A sender can use the keyword `close` to indicate that no more values will be sent, and receivers can
+test if the channel has been closed by using a second boolean parameter.
 
 ```go
 
@@ -77,3 +78,5 @@ func main() {
 ```
 
 [[Select statement]]
+
+A channel both [communicates](./Communication.md) and [synchronizes](./Synchronization.md)
