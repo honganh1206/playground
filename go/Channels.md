@@ -53,8 +53,7 @@ chan<- time.Time // Send-only
 
 ## Range and Close
 
-A sender can use the keyword `close` to indicate that no more values will be sent, and receivers can
-test if the channel has been closed by using a second boolean parameter.
+A sender can use the keyword `close` to indicate that no more values will be sent, and receivers can test if the channel has been closed by using a second boolean parameter.
 
 ```go
 
