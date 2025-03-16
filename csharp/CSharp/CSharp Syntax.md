@@ -1,9 +1,11 @@
 ---
+id: CSharp Syntax
+aliases: []
 tags:
-  - "#study"
-  - "#review"
-  - "#programming"
-  - "#csharp"
+  -  #study
+  -  #review
+  -  #programming
+  -  #csharp
 cssclasses:
   - center-images
 ---
@@ -19,3 +21,10 @@ cssclasses:
 [[Value types & Reference types]]
 
 [[Async-Await in CSharp]]
+
+[[Abstract]]
+
+[[Virtual and Override]]
+
+[[Collections]]
+
