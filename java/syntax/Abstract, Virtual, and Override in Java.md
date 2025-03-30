@@ -44,7 +44,7 @@ class Dog extends Animal {
 }
 ```
 
-Java uses the `final` keyword to prevent method overriding, which is somewhat the opposite of C#'s virtual:
+Java uses the `final` keyword to _prevent method overriding_, which is somewhat the opposite of C#'s virtual:
 
 ```java
 class Animal {
