@@ -1,12 +1,15 @@
 ---
+id: Flow control statements
+aliases: []
 tags:
-  - "#study"
-  - "#review"
-  - "#programming"
-  - "#golang"
+  - #study
+  - #review
+  - #programming
+  - #golang
 cssclasses:
   - center-images
 ---
+
 - In Go, `while` is `for` but drop the semicolons
 
 ```go
@@ -49,7 +52,7 @@ func main() {
 
 ```
 
-- Variables declared inside an `if`’s short statement is *also available* inside the `else` block
+- Variables declared inside an `if`’s short statement is _also available_ inside the `else` block
 
 ```go
 func pow(x, n, lim float64) float64 {
@@ -78,11 +81,9 @@ func main() {
 }
 
 
-// output: hello hi world bye 
+// output: hello hi world bye
 ```
 
 [More on `defer`](https://go.dev/blog/defer-panic-and-recover)
 
 [A good blog on why sometimes using `defer` keyword could be a trap](https://victoriametrics.com/blog/defer-in-go/#:~:text=In%20Go%2C%20defer%20is%20a,until%20the%20surrounding%20function%20finishes.&text=In%20this%20snippet%2C%20the%20defer,end%20of%20the%20main%20function.)
-
-

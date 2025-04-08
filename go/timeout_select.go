@@ -1,20 +1,16 @@
----
-id: Synchronization
-aliases:
-  - Synchronization
-tags: []
----
+package main
 
-# Synchronization
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
 
-It is like how [[Channels]] works: When the main function executes `<-c`, it will wait for a value
-to be sent
+type Message struct {
+	str  string
+	wait chan bool // Dedicated wait channel per message
+}
 
-When the invoked function executes `c <- value`, it will wait for a receiver to be ready
-
-A sender and receiver must **both be ready** to play their part. Otherwise we wait until they are
-
-```go
 func boring(msg string) <-chan Message { // Return receive-only channel
 	c := make(chan Message)
 	go func() {
@@ -28,4 +24,18 @@ func boring(msg string) <-chan Message { // Return receive-only channel
 	}()
 	return c
 }
-```
+
+func main() {
+	c := boring("Joe")
+	timeout := time.After(5 * time.Second)
+	for {
+		select {
+		case s := <-c:
+			fmt.Println(s)
+		case <-timeout:
+			// Timeout the entire conversation
+			fmt.Println("You talk too much.")
+			return
+		}
+	}
+}

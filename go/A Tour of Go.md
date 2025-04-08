@@ -2,10 +2,10 @@
 id: A Tour of Go
 aliases: []
 tags:
-  - #study
-  - #review
-  - #programming
-  - #golang
+  -  #study
+  -  #review
+  -  #programming
+  -  #golang
 cssclasses:
   - center-images
 ---

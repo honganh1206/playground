@@ -44,24 +44,21 @@ As gorountines _run in the same address space_, the access to shared memory must
 An example of a background goroutine check:
 
 ```go
-	// Background goroutine to delete not-seen-recently clients
-	go func() {
-		for {
-			time.Sleep(time.Minute)
-
-			// Lock to prevent check limiter check while the cleaning is taking place
-			mu.Lock()
-
-			for ip, client := range clients {
-				// Remove clients if they are not seen more than 3 mins
-				if time.Since(client.lastSeen) > 3*time.Minute {
-					delete(clients, ip)
-				}
+// Background goroutine to delete not-seen-recently clients
+go func() {
+	for {
+		time.Sleep(time.Minute)
+		// Lock to prevent check limiter check while the cleaning is taking place
+		mu.Lock()
+		for ip, client := range clients {
+			// Remove clients if they are not seen more than 3 mins
+			if time.Since(client.lastSeen) > 3*time.Minute {
+				delete(clients, ip)
 			}
-
-			mu.Unlock()
 		}
-	}() // Immediate function call operator
+		mu.Unlock()
+	}
+}() // Immediate function call operator
 
 ```
 
@@ -83,5 +80,7 @@ func main() {
 }
 ```
 
-> [!WARNING] Goroutines are NOT threads. There might only be one thread in a program, and that
-> thread has thousands of goroutines. Goroutines are **multiplexed dynamically** onto threads
+> [!WARNING]
+> Goroutines are NOT threads. There might only be one thread in a program, and that thread has thousands of goroutines.
+
+Goroutines are **multiplexed dynamically** onto threads, and thinking of goroutines as cheap threads will not take you far.

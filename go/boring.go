@@ -11,15 +11,25 @@ type Message struct {
 	wait chan bool // Dedicated wait channel per message
 }
 
+// Sender                      Receiver
+//	|                           |
+//	|-- Message + waitForIt --> |
+//	|                           |
+//	|     (processing)          |
+//	|                           |
+//	| <---- signal waitForIt ---|
+//	|                           |
+//	|-- Next Message ---------> |
+
 func boring(msg string) <-chan Message { // Return receive-only channel
 	c := make(chan Message)
 	go func() {
 		for i := 0; ; i++ {
-			waitForIt := make(chan bool)
+			waitForIt := make(chan bool) // Sync mechanism between sender and receiver
 			c <- Message{fmt.Sprintf("%s %d", msg, i), waitForIt}
 			// Unpredictable intervals
 			time.Sleep(time.Duration(rand.Intn(1e3)) * time.Millisecond)
-			<-waitForIt
+			<-waitForIt // The sender then waits on this
 		}
 	}()
 	return c
@@ -46,7 +56,6 @@ func main() {
 	// We are kind of cheating here: The main function could not see the output
 	// from other goroutines
 
-	// c := boring("boring!")
 	joe := boring("Joe")
 	ann := boring("Ann")
 
@@ -57,16 +66,12 @@ func main() {
 	// }
 	c := fanIn(joe, ann)
 
-	// for i := 0; i < 10; i++ {
-	// 	fmt.Println(<-c)
-	// }
-
 	for i := 0; i < 5; i++ {
 		msg1 := <-c
 		fmt.Println(msg1.str)
 		msg2 := <-c
 		fmt.Println(msg2.str)
-		msg1.wait <- true
+		msg1.wait <- true // Ready for the next message
 		msg2.wait <- true
 
 	}

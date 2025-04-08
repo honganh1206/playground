@@ -8,7 +8,7 @@ Tags: #review #programming #golang
 
 # Channels in Go
 
-A **typed conduit** through which we send and receive values.
+A **typed conduit** through which we send and receive values. It is a way for goroutines to [communicate](./Communication.md)
 
 ```go
 ch := make(chan int) // Create a channel
