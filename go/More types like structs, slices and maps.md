@@ -1,12 +1,15 @@
 ---
+id: More types like structs, slices and maps
+aliases: []
 tags:
-  - "#study"
-  - "#review"
-  - "#golang"
-  - "#programming"
+  - #study
+  - #review
+  - #golang
+  - #programming
 cssclasses:
   - center-images
 ---
+
 ## [[Pointers]]
 
 ## [[Structs]]
@@ -19,7 +22,6 @@ In Go, the type `[n]T` is an array of `n` values of type `T`
 
 ## Range
 
-
 ```go
 func main() {
 	// The index and a copy of the element at that index
@@ -30,7 +32,7 @@ func main() {
 	for i := range pow {
 		// Bitwise operation - Shift 1 to the left by i positions
 		// == 2^i
-		pow[i] = 1 << uint(i) 
+		pow[i] = 1 << uint(i)
 	}
 	for _, value := range pow {
 		fmt.Printf("%d\n", value)
@@ -52,4 +54,3 @@ func main() {
 ## [[Maps in Go]]
 
 ## [[Functions in Go]]
-
