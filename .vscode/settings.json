@@ -2,6 +2,7 @@
     "files.associations": {
         "*.json": "jsonc",
         "*.tmpl": "html",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "chrono": "cpp"
     }
 }
