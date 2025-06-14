@@ -2,21 +2,25 @@
 id: Slices
 aliases: []
 tags:
-  -  #study
-  -  #review
-  -  #programming
-  -  #golang
+  - #study
+  - #review
+  - #programming
+  - #golang
 cssclasses:
   - center-images
 ---
 
-A dynamically-sized view into elements of the array (similar to `List` in C#). A slice is formed by two indices, a low and a high index. Note that we _exclude the last element_
+A dynamically-sized view into elements of the array (similar to `List` in C#).
+
+A slice is formed by two indices, a low and a high index.
+
+Slices in Go are **passed by values**
 
 ```go
 func main() {
 	primes := [6]int{2, 3, 5, 7, 11, 13}
 
-	var s []int = primes[1:4] // [3 5 7]
+	var s []int = primes[1:4] // [3 5 7] Note that we exclude the last element_
 	fmt.Println(s)
 }
 ```

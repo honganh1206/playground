@@ -16,11 +16,12 @@
 ```csharp
 IEnumerable<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
 IEnumerable<int> evenNumbers = numbers.Where(n => n % 2 == 0);
-// At this point, the query is not executed yet
+// At this point, there is no SQL query generated
+// The data is already in RAM
+// We just want to manipulate the data locally
 
 foreach (int number in evenNumbers)
 {
-    // The query is executed here
     Console.WriteLine(number);
 }
 ```
@@ -39,6 +40,12 @@ foreach (int number in evenNumbers)
 - Optimized for large datasets: Minimize the amount of data to be transferred
 - Dynamic query generation: Able to create queries specific to the data source
 - LINQ to SQL/Entities: Queries are processed in the database rather than the app memory
+
+```cs
+IQueryable<User> users = dbContext.Users;
+var activeUsers = users.Where(u => u.IsActive);
+var list = activeUsers.ToList(); // SQL sent **now**.
+```
 
 # Comparing `IEnumerable` and `IQueryable`
 
