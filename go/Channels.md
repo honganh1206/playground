@@ -8,7 +8,7 @@ Tags: #review #programming #golang
 
 # Channels in Go
 
-A **typed conduit** through which we send and receive values. It is a way for goroutines to [communicate](./Communication.md)
+A **typed conduit** through which we *send and receive values*. It is a way for goroutines to [communicate](./Communication.md)
 
 ```go
 ch := make(chan int) // Create a channel
@@ -16,8 +16,8 @@ ch <- v // Send v to channel ch
 v := <-ch // Receive value from ch and assign value to x
 ```
 
-> [!important] Important Sends and receives are blocked until the other side is ready. This allows
-> goroutines to sync without explicit locks or condition variables.
+> [!important] Important Sends and receives are blocked until the other side is ready. 
+> This allows goroutines to sync without explicit locks or condition variables.
 
 ```go
 func sum(s []int, c chan int) {
@@ -49,7 +49,7 @@ chan time.Time // Bidirectional (can both send and receive)
 chan<- time.Time // Send-only
 ```
 
-[Buffered Channels](./Buffered Channels.md)
+[Buffered Channels](./Buffered%20Channels.md)
 
 ## Range and Close
 
@@ -76,6 +76,6 @@ func main() {
 
 ```
 
-[[Select statement]]
+[Select statement](./Select%20statement.md)
 
 A channel both [communicates](./Communication.md) and [synchronizes](./Synchronization.md)

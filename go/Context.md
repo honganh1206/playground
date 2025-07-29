@@ -1,15 +1,38 @@
-# Context library
+---
+id: Context
+aliases: []
+tags: []
+---
 
-A library to manage **cancellation, deadlines and request-scoped values**
+## Definition
+
+A signal/controller to manage *how long some work should continue*. A remote control to stop a goroutine
+
+In Go, goroutines run independently, so we use `context` when we want to stop them early (cancel)/set a time limit (timeout)/pass request-scoped value
 
 ```go
-import "context"
+// Example
+ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+defer cancel()
 
-// Basic context types
-context.Context        // Interface
-context.Background()   // Root context
-context.TODO()        // Placeholder context
+select {
+case <-time.After(3 * time.Second):
+    fmt.Println("Finished work!")
+case <-ctx.Done():
+    fmt.Println("Too slow, timeout!")  // This prints after 2 seconds
+}
 ```
+
+![warning]
+> Context cancellation only signals goroutines to stop. It does NOT wait for them to stop.
+
+## Real-world analogy
+
+Imagine you send someone on a task and give them a walkie-talkie (context). You can:
+
+- Say “Stop!” anytime (cancel())
+- Or let their timer beep after 2 minutes (WithTimeout)
+- They keep working until they hear a stop signal `<-ctx.Done()`
 
 ## Context creation
 

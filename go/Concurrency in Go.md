@@ -12,7 +12,9 @@ tags: []
 
 [[Concurrency Pattern]]
 
-# From the [slide](https://go.dev/talks/2012/concurrency.slide)
+[Slide by Rob Pike](https://go.dev/talks/2012/concurrency.slide)
+
+## What is concurrency?
 
 Concurrency is the **composition** of _independently executing computations_
 
@@ -24,6 +26,12 @@ we can enable concurrency but not parallelism
 A well-written concurrent program can run _efficiently_ in parallel on a multiprocessor
 
 Some languages sharing the concurrency feature are Occam, Erlang, Newsqueak, etc.,
+
+## Concurrency in Go
+
+Go enables **two styles of concurrency programming**: Communicating sequential processes or CSP (goroutines and channels) and **shared memory multithreading**, which is more traditional
+
+> Go's support for concurrency is one of its great strengths, but concurrent programs are inherently harder to understand compared to sequential ones.
 
 In Go, **channels are first-class values**
 
