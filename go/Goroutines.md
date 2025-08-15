@@ -92,10 +92,15 @@ Networking is a natural domain that benefits a lot from concurrency, since a ser
 
 Goroutines are **multiplexed dynamically** onto threads, and thinking of goroutines as cheap threads will not take you far.
 
-## Example with `clock1` and `clock2`
+## Examples
 
 We have `clock1` as a sequential clock, while `clock2` is concurrent
 
 We also have `netcat1` that reads data from a connection and writes it to the standard output.
 
 We run two `netcat1` instances at the same time on different terminals. When we terminate the 1st instance, _the 2nd instance will run_ since the server is sequential - it deals with one client at a time
+
+`reverb1.go` simulates the echoes overlapping with each other by using two `go` keywords, making the server use concurrency one just one client `netcat2`
+
+[[Pipelines]]
+

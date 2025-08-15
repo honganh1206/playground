@@ -8,7 +8,7 @@ Tags: #review #programming #golang
 
 # Channels in Go
 
-A **typed conduit** through which we *send and receive values*. It is a way for goroutines to [communicate](./Communication.md)
+A **typed conduit** through which we _send and receive values_. It is a way for goroutines to [communicate](./Communication.md)
 
 ```go
 ch := make(chan int) // Create a channel
@@ -16,29 +16,19 @@ ch <- v // Send v to channel ch
 v := <-ch // Receive value from ch and assign value to x
 ```
 
-> [!important] Important Sends and receives are blocked until the other side is ready. 
+> [!important] Important Sends and receives are blocked until the other side is ready.
 > This allows goroutines to sync without explicit locks or condition variables.
 
+As with maps, a channel is a _reference_ to the data structure created by `make`. This means when we copy a channel or pass one as an argument, we are copying a _reference_ of it and the caller + callee refer to the same data structure.
+
+Two channels can be compared using `==`, and the result is `true` if both refer to the same channel data structure
+
+A channel has _two principal operations: send and receive_. A send statement transmits a value from one goroutine through a channel to another goroutine which execute a corresponding receive expression
+
 ```go
-func sum(s []int, c chan int) {
-	sum := 0
-	for _, v := range s {
-		sum += v
-	}
-	c <- sum // send sum to c
-}
-
-func main() {
-	s := []int{7, 2, 8, -9, 4, 0}
-
-	c := make(chan int)
-	go sum(s[:len(s)/2], c) // split the 1st half and sum them
-	go sum(s[len(s)/2:], c) // split the second half and sum them
-	x, y := <-c, <-c // receive from c
-
-	fmt.Println(x, y, x+y)
-}
-
+ch <- x // Send statement
+x = <- ch // Receive expression
+<- ch // Result of receive expression is discarded
 ```
 
 We can have _3 types of channels_: Bidirectional, receive-only and send-only
@@ -49,33 +39,21 @@ chan time.Time // Bidirectional (can both send and receive)
 chan<- time.Time // Send-only
 ```
 
-[Buffered Channels](./Buffered%20Channels.md)
+A channel created with `make(chan int)` only is an [[Unbuffered channel]] . If we input an optional second argument, we have [Buffered Channels](./Buffered%20Channels.md)
 
 ## Range and Close
 
-A sender can use the keyword `close` to indicate that no more values will be sent, and receivers can test if the channel has been closed by using a second boolean parameter.
+A sender can use the keyword `close` to indicate that no more values will be sent, and receivers can test if the channel has been closed by using a second boolean parameter (See `fib.go`)
 
-```go
-
-func fibonacci(n int, c chan int) {
-	x, y := 0, 1
-	for i := 0; i < n; i++ {
-		c <- x // Send x to channel c
-		x, y = y, x+y
-	}
-	close(c) // Only a sender should close a channel
-}
-
-func main() {
-	c := make(chan int, 10)
-	go fibonacci(cap(c), c) // cap stands for capacity?
-	for i := range c { // The loop receives values from the channel repeatedly until it is closed
-		fmt.Println(i)
-	}
-}
-
-```
+After a channel has been closed, any further send operations on it will panic. After the closed channel is drained i.e., last sent element has been received, all subsequent receive operations will proceed but will yield a zero value.
 
 [Select statement](./Select%20statement.md)
 
 A channel both [communicates](./Communication.md) and [synchronizes](./Synchronization.md)
+
+## Messages in channels
+
+Messages sent over channels have two important aspects:
+
+1. The value of the message
+2. The moment at which the message occurs

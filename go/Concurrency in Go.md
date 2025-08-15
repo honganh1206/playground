@@ -1,33 +1,11 @@
 ---
 id: Concurrency in Go
-aliases: []
+aliases:
+  - Concurrency in Go
 tags: []
 ---
 
-[[Goroutines]]
-
-[[Channels]]
-
-[[Mutexes]]
-
-[[Concurrency Pattern]]
-
-[Slide by Rob Pike](https://go.dev/talks/2012/concurrency.slide)
-
-## What is concurrency?
-
-Concurrency is the **composition** of _independently executing computations_
-
-Concurrency mirrors a complex world of interacting, independently behaving pieces
-
-[[Concurrency is NOT Parallelism]], but it **enables** parallelism. If we have only one processor,
-we can enable concurrency but not parallelism
-
-A well-written concurrent program can run _efficiently_ in parallel on a multiprocessor
-
-Some languages sharing the concurrency feature are Occam, Erlang, Newsqueak, etc.,
-
-## Concurrency in Go
+# Concurrency in Go
 
 Go enables **two styles of concurrency programming**: Communicating sequential processes or CSP (goroutines and channels) and **shared memory multithreading**, which is more traditional
 
@@ -64,11 +42,3 @@ func main() {
     time.Sleep(6 * time.Second) // Keep main program running
 }
 ```
-
-[[Communication]]
-
-[[Synchronization]]
-
-[[Multiplexing]]
-
-[[Writing system software with Go]]
