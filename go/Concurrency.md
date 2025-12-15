@@ -10,7 +10,7 @@ tags: []
 
 [[Channels]]
 
-[[Mutexes]]
+[[Mutexes in Go]]
 
 [[Concurrency Pattern]]
 

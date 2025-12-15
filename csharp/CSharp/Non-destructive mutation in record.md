@@ -6,6 +6,9 @@ tags:
   - "#programming"
 cssclasses:
   - center-images
+sr-due: 2025-09-28
+sr-interval: 3
+sr-ease: 250
 ---
 Use the `with` expression to make a new record instance that is *a copy of an existing record instance*
 

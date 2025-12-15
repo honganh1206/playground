@@ -6,8 +6,8 @@ tags:
   - "#programming"
 cssclasses:
   - center-images
-sr-due: 2024-10-18
-sr-interval: 4
+sr-due: 2027-01-11
+sr-interval: 473
 sr-ease: 270
 ---
 - Sorted references for **a specific field** from a main table

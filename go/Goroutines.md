@@ -65,8 +65,7 @@ go func() {
 
 ```
 
-Note that _background goroutine forms a closure over variables outside its scope_. Any changes we
-make to the variables will be reflected in the rest of the codebase
+Note that _background goroutine forms a closure over variables outside its scope_. Any changes we make to the variables will be reflected in the rest of the codebase
 
 ```go
 func main() {
@@ -104,3 +103,6 @@ We run two `netcat1` instances at the same time on different terminals. When we 
 
 [[Pipelines]]
 
+[[Goroutine leaks]]
+
+[[Looping in Parallel]]

@@ -33,7 +33,9 @@ Go functions may be **closures** (function value outside of function body)
 
 ```go
 func adder() func(int) int {
-	sum := 0 // Closure
+	sum := 0 
+	// Closure is an anon function
+	// that accepts variables from its ENCLOSING environment
 	return func(x int) int {
 		sum += x
 		return sum

@@ -1,0 +1,2 @@
+[Link](https://nghiant3223.github.io/2025/06/03/memory_allocation_in_go.html?fbclid=IwY2xjawM7iN9leHRuA2FlbQIxMQBicmlkETFHTUk1OHhaVll4bnRaSFFuAR6DeUQzbeCx7hmn9IzmEthf2TubTA6wHYbuFvEJVACjCx90HszgWIhV7Z7Z6A_aem_uhcfq_oOdGiE-9nG7MNj7Q#memory-allocation-in-go)
+
