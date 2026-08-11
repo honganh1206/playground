@@ -1,3 +1,3 @@
 [[Variable lifetimes]]
 
-[[Borrow-checker]]
+[[Memory management in Rust]]

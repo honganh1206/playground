@@ -50,3 +50,5 @@ Rust program will exit with the value zero by default.
 [[Functions in Rust]]
 
 [[Generics in Rust]]
+
+[[Pattern matching]]

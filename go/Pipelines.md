@@ -1,1 +1,0 @@
-When an output of a goroutine works as the input to another goroutine, this is called a *pipeline*
