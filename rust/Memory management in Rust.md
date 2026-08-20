@@ -13,7 +13,7 @@ In C/C++, memory allocation works like this:
 
 ![[image.png]]
 
-A `std::string` owns its buffer, when the program destroys the string, the string's de-structor frees the buffer.
+A `std::string` owns its buffer, when the program destroys the string, the string's de-structor frees the buffer (Zig has to explicitly set the destructor).
 
 While other code parts can create temporary pointers to an owned memory, those code parts are responsible for removing the pointers when the memory owner destroys the owned project.
 
@@ -60,13 +60,32 @@ Assignment to the other variables:
 
 ![[image-2.png]]
 
-How C++ represents a vector of strings:
+kHow C++ represents a vector of strings:
 
 ![[image-3.png]]
 
 In C++, assigning a vector produces a copy of the original vector. When the variables go out of scope, the program can automatically clean up the allocations.
 
 ![[image-4.png]]
+
+The `move` keyword in Rust forces closures (mostly) to take ownership of variables from its environment.
+
+```rust
+use std::thread;
+
+let data = String::from("Hello from main thread!");
+
+// `move` keyword forces the closure to take ownership of `data`.
+let handle = thread::spawn(move || {
+    // The spawned thread now owns `data`.
+    println!("{}", data);
+});
+
+// println!("{}", data); // ERROR: borrow of moved value: `data`
+// `data` was moved into the closure, so it's no longer accessible here.
+
+handle.join().unwrap(); // Wait for the thread to finish.
+```
 
 
 # `Copy` types
@@ -84,6 +103,8 @@ Only simple bit-for-bit types can be copied like bool, float, integer, etc. This
 > Copy types are VERY limited in which types they can contain, while non-Copy types can use heap allocation.
 
 Copy leaves the source initialized.
+
+
 
 ## Shared ownership
 
